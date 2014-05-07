@@ -1,0 +1,46 @@
+;
+; "CMD Prompt Here" PowerToy
+;
+; Copyright 1996 Microsoft Corporation
+;
+; Modified to launch VS.NET 2013 command prompt 7/5/14 MG
+
+[version]
+signature="$CHICAGO$"
+
+[VSNet2013CmdHereInstall]
+CopyFiles = VSNet2013CmdHere.Files.Inf
+AddReg    = VSNet2013CmdHere.Reg
+
+[DefaultInstall]
+CopyFiles = VSNet2013CmdHere.Files.Inf
+AddReg    = VSNet2013CmdHere.Reg
+
+[DefaultUnInstall]
+DelFiles  = VSNet2013CmdHere.Files.Inf
+DelReg    = VSNet2013CmdHere.Reg
+
+[SourceDisksNames]
+55="VS .NET 2013 CMD Prompt Here","",1
+
+[SourceDisksFiles]
+VSNet2013CmdHere.INF=55
+
+[DestinationDirs]
+VSNet2013CmdHere.Files.Inf = 17
+
+[VSNet2013CmdHere.Files.Inf]
+VSNet2013CmdHere.INF
+
+[VSNet2013CmdHere.Reg]
+HKLM,%UDHERE%,DisplayName,,"%VSNet2013CmdHereName%"
+HKLM,%UDHERE%,UninstallString,,"rundll32.exe syssetup.dll,SetupInfObjectInstallAction DefaultUninstall 132 %17%\VSNet2013CmdHere.inf"
+HKCR,Directory\Shell\VSNet2013CmdHere,,,"%VSNet2013CmdHereAccel%"
+HKCR,Directory\Shell\VSNet2013CmdHere\command,,,"%11%\cmd.exe /k cd ""%1"" && ""C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\Tools\vsvars32.bat"""
+HKCR,Drive\Shell\VSNet2013CmdHere,,,"%VSNet2013CmdHereAccel%"
+HKCR,Drive\Shell\VSNet2013CmdHere\command,,,"%11%\cmd.exe /k cd ""%1"""
+
+[Strings]
+VSNet2013CmdHereName="VS.NET 2013 Command Prompt Here PowerToy"
+VSNet2013CmdHereAccel="VS.NET &2013 CMD Prompt Here"
+UDHERE="Software\Microsoft\Windows\CurrentVersion\Uninstall\VSNet2013CmdHere"
